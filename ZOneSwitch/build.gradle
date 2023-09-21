@@ -12,6 +12,10 @@ android {
         minSdk 23
         targetSdk 33
 
+        aarMetadata {
+            minCompileSdk = 29
+        }
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
@@ -21,6 +25,11 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion '1.2.0'
     }
+
+    testFixtures {
+        enable = true
+    }
+
 
     buildTypes {
         release {
@@ -35,6 +44,13 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
+    }
+
 }
 
 dependencies {
@@ -52,3 +68,16 @@ dependencies {
     implementation 'androidx.compose.material:material:1.3.1'
 }
 
+publishing {
+    publications {
+        release(MavenPublication) {
+            groupId = 'com.mfarzan'
+            artifactId = 'zoneswitch'
+            version = '1.0.2'
+
+            afterEvaluate {
+                from components.release
+            }
+        }
+    }
+}
