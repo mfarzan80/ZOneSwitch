@@ -1,6 +1,6 @@
 # Zero One Switch
 
-A switch that uses 0 for the inactive state and 1 for the active state, and it has an animation for changing its value.
+A switch that uses 0 for the inactive state and 1 for the active state, and it has an animation for changing its value. this library written with Jetpack Compose.
 
 
 <table style="width:100%">
